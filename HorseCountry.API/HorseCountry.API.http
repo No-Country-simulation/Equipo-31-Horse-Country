@@ -1,0 +1,6 @@
+@HorseCountry.API_HostAddress = http://localhost:5301
+
+GET {{HorseCountry.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
