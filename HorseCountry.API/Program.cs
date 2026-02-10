@@ -66,8 +66,6 @@ public partial class Program
             scope.Database.Migrate();
         }
 
-        app.UseHttpsRedirection();
-
         app.UseAuthentication();
         app.UseAuthorization();
 

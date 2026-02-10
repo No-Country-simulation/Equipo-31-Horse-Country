@@ -8,7 +8,6 @@ services:
       database:
         condition: service_healthy
     ports:
-      - 7221:7221
       - 5233:5233
   database:
     image: postgres:latest
@@ -18,7 +17,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - 5432:5432
+      - 7500:5432
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 10s
