@@ -1,11 +1,17 @@
-import Hero from "../componentes/Hero"
-
+import Hero from "../componentes/Hero";
+import { Box } from "@mui/material";
 
 const Home = () => {
     return (
-        <div className="min-h-screen bg-[#f5f5dc]">
+        <Box
+            sx={{
+                minHeight: "100vh",
+                bgcolor: "background.default",
+            }}
+        >
             <Hero />
-        </div>
-    )
-}
-export default Home
+        </Box>
+    );
+};
+
+export default Home;
