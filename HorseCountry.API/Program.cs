@@ -52,8 +52,16 @@ public partial class Program
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
 
+        builder.Services.AddCors(options => {
+            options.AddDefaultPolicy(policy => {
+                policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+        });
+
         var app = builder.Build();
 
+        app.UseCors();
+        
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -65,6 +73,8 @@ public partial class Program
         {
             scope.Database.Migrate();
         }
+
+        app.UseHttpsRedirection();
 
         app.UseAuthentication();
         app.UseAuthorization();

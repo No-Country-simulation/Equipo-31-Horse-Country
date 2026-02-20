@@ -9,7 +9,7 @@ public class Horse
     public int GenderId { get; set; }
     public int StatusId { get; set; }
     public required string Name { get; set; }
-    public required string Descriprtion { get; set; }
+    public required string Descriprtion { get; set; } 
     public int Age { get; set; }
     public Double Price { get; set; }
     public TimeSpan CreatedAt {  get; set; }
