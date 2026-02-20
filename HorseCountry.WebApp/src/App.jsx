@@ -11,6 +11,7 @@ import AltaCaballo from './pages/AltaCaballo'
 import DetalleCaballo from './pages/DetalleCaballo'
 import Carrito from './pages/Carrito'
 import Ticket from './pages/Ticket'
+import Footer from './componentes/Footer'
 
 function App() {
   // --- EL RESTO DEL CÓDIGO VA AQUÍ ---
@@ -101,6 +102,7 @@ function App() {
             />
           </Routes>
         </main>
+        <Footer />
       </BrowserRouter>
     </div>
   )
