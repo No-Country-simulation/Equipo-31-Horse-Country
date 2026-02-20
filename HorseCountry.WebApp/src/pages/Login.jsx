@@ -30,6 +30,7 @@ const Login = () => {
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userRole', userFound.role);
       localStorage.setItem('userEmail', userFound.email);
+window.dispatchEvent(new Event("userRoleChanged"));
 
       // Redirigir al inicio
       navigate('/');
