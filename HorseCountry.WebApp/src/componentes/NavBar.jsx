@@ -46,9 +46,9 @@ const NavBar = () => {
             </div>
           </Link>
           {/**Menu hamburgesa para celu */}
-          
-          
-          
+
+
+
           <button
             className="md:hidden text-[#f5f5dc] focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
@@ -62,11 +62,13 @@ const NavBar = () => {
           {/* Menú */}
           <div className="hidden md:flex items-center space-x-8">
 
-            <Link to="/" className="text-[#f5f5dc] hover:text-[#d4af37] font-medium transition-colors duration-200">
+            <Link onClick={() => window.scrollTo(0, 0)}
+              to="/" className="text-[#f5f5dc] hover:text-[#d4af37] font-medium transition-colors duration-200">
               Inicio
             </Link>
 
-            <Link to="/catalogo" className="text-[#f5f5dc] hover:text-[#d4af37] font-medium transition-colors duration-200">
+            <Link onClick={() => window.scrollTo(0, 0)}
+              to="/catalogo" className="text-[#f5f5dc] hover:text-[#d4af37] font-medium transition-colors duration-200">
               Catálogo
             </Link>
 
@@ -108,67 +110,67 @@ const NavBar = () => {
         </div>
       </div>
       {isOpen && (
-            <div className="md:hidden  space-y-2 p-4 bg-[#3d2817]/95 text-center">
-              <Link
-                to="/"
-                className="block text-[#f5f5dc] hover:text-[#d4af37] font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Inicio
-              </Link>
+        <div className="md:hidden  space-y-2 p-4 bg-[#3d2817]/95 text-center">
+          <Link
+            to="/"
+            className="block text-[#f5f5dc] hover:text-[#d4af37] font-medium"
+            onClick={() => setIsOpen(false)}
+          >
+            Inicio
+          </Link>
 
-              <Link
-                to="/catalogo"
-                className="block text-[#f5f5dc] hover:text-[#d4af37] font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Catálogo
-              </Link>
+          <Link
+            to="/catalogo"
+            className="block text-[#f5f5dc] hover:text-[#d4af37] font-medium"
+            onClick={() => setIsOpen(false)}
+          >
+            Catálogo
+          </Link>
 
-              {!userRole && (
-                <Link
-                  to="/login"
-                  className="block px-4 py-2 bg-[#d4af37] text-[#3d2817] rounded-lg font-semibold hover:bg-[#b8860b] transition-colors duration-200 shadow-md hover:shadow-xl"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Iniciar Sesión
-                </Link>
-              )}
-
-              {userRole === "ADMIN" && (
-                <Link
-                  to="/admin"
-                  className="block text-[#d4af37] font-bold"
-                  onClick={() => setIsOpen(false)}
-                >
-                  🔧 Panel Admin
-                </Link>
-              )}
-
-              {userRole === "Vendedor" && (
-                <Link
-                  to="/alta"
-                  className="block text-[#d4af37] font-bold"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Alta caballo
-                </Link>
-              )}
-
-              {userRole && (
-                <button
-                  onClick={() => {
-                    handleLogout();
-                    setIsOpen(false);
-                  }}
-                  className="w-full px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
-                >
-                  Cerrar sesión
-                </button>
-              )}
-              
-            </div>
+          {!userRole && (
+            <Link
+              to="/login"
+              className="block px-4 py-2 bg-[#d4af37] text-[#3d2817] rounded-lg font-semibold hover:bg-[#b8860b] transition-colors duration-200 shadow-md hover:shadow-xl"
+              onClick={() => setIsOpen(false)}
+            >
+              Iniciar Sesión
+            </Link>
           )}
+
+          {userRole === "ADMIN" && (
+            <Link
+              to="/admin"
+              className="block text-[#d4af37] font-bold"
+              onClick={() => setIsOpen(false)}
+            >
+              🔧 Panel Admin
+            </Link>
+          )}
+
+          {userRole === "Vendedor" && (
+            <Link
+              to="/alta"
+              className="block text-[#d4af37] font-bold"
+              onClick={() => setIsOpen(false)}
+            >
+              Alta caballo
+            </Link>
+          )}
+
+          {userRole && (
+            <button
+              onClick={() => {
+                handleLogout();
+                setIsOpen(false);
+              }}
+              className="w-full px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+            >
+              Cerrar sesión
+            </button>
+          )}
+
+        </div>
+      )}
     </nav>
   );
 };
