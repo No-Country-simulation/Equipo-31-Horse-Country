@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole"));
   const navigate = useNavigate(); // ← agregado
 
@@ -44,7 +45,20 @@ const NavBar = () => {
               <p className="text-xs text-[#d4af37]">Caballos de Élite</p>
             </div>
           </Link>
-
+          {/**Menu hamburgesa para celu */}
+          
+          
+          
+          <button
+            className="md:hidden text-[#f5f5dc] focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? (
+              <span className="text-2xl">✕</span> // ícono de cerrar
+            ) : (
+              <span className="text-2xl">☰</span> // ícono de hamburguesa
+            )}
+          </button>
           {/* Menú */}
           <div className="hidden md:flex items-center space-x-8">
 
@@ -93,6 +107,68 @@ const NavBar = () => {
 
         </div>
       </div>
+      {isOpen && (
+            <div className="md:hidden  space-y-2 p-4 bg-[#3d2817]/95 text-center">
+              <Link
+                to="/"
+                className="block text-[#f5f5dc] hover:text-[#d4af37] font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                Inicio
+              </Link>
+
+              <Link
+                to="/catalogo"
+                className="block text-[#f5f5dc] hover:text-[#d4af37] font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                Catálogo
+              </Link>
+
+              {!userRole && (
+                <Link
+                  to="/login"
+                  className="block px-4 py-2 bg-[#d4af37] text-[#3d2817] rounded-lg font-semibold hover:bg-[#b8860b] transition-colors duration-200 shadow-md hover:shadow-xl"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Iniciar Sesión
+                </Link>
+              )}
+
+              {userRole === "ADMIN" && (
+                <Link
+                  to="/admin"
+                  className="block text-[#d4af37] font-bold"
+                  onClick={() => setIsOpen(false)}
+                >
+                  🔧 Panel Admin
+                </Link>
+              )}
+
+              {userRole === "Vendedor" && (
+                <Link
+                  to="/alta"
+                  className="block text-[#d4af37] font-bold"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Alta caballo
+                </Link>
+              )}
+
+              {userRole && (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                  className="w-full px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+                >
+                  Cerrar sesión
+                </button>
+              )}
+              
+            </div>
+          )}
     </nav>
   );
 };
