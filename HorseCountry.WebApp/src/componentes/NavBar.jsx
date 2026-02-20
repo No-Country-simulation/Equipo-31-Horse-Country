@@ -40,7 +40,7 @@ const NavBar = () => {
             <div className="w-12 h-12 bg-gradient-to-br from-[#d4af37] to-[#b8860b] rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
               <span className="text-2xl font-bold text-[#3d2817]">HC</span>
             </div>
-            <div className="hidden sm:block">
+            <div className=" sm:block">
               <h1 className="text-xl font-bold text-[#f5f5dc] tracking-wide">Horse Country</h1>
               <p className="text-xs text-[#d4af37]">Caballos de Élite</p>
             </div>
