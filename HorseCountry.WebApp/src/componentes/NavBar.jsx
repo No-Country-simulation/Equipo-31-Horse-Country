@@ -75,6 +75,7 @@ const NavBar = () => {
             {/* Si NO hay usuario → mostrar Iniciar Sesión */}
             {!userRole && (
               <Link
+                onClick={() => window.scrollTo(0, 0)}
                 to="/login"
                 className="px-6 py-2.5 bg-[#d4af37] text-[#3d2817] rounded-lg font-semibold hover:bg-[#b8860b] transition-colors duration-200 shadow-md hover:shadow-xl"
               >
@@ -84,14 +85,14 @@ const NavBar = () => {
 
             {/* ADMIN */}
             {userRole === "ADMIN" && (
-              <Link to="/admin" className="text-[#8B4513] font-bold hover:underline">
+              <Link onClick={() => window.scrollTo(0, 0)} to="/admin" className="text-[#8B4513] font-bold hover:underline">
                 🔧 Panel Admin
               </Link>
             )}
 
             {/* Vendedor */}
             {userRole === "Vendedor" && (
-              <Link to="/alta" className="text-[#8B4513] font-bold hover:underline">
+              <Link onClick={() => window.scrollTo(0, 0)} to="/alta" className="text-[#8B4513] font-bold hover:underline">
                 Alta caballo
               </Link>
             )}
