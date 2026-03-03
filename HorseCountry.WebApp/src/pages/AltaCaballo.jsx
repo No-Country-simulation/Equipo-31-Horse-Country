@@ -8,7 +8,7 @@ const AltaCaballo = () => {
     breedId: 1,
     colorId: 1,
     genderId: 4,
-    statusId: 1
+    statusId: 4
 
   });
 
@@ -77,7 +77,7 @@ useEffect(() => {
 };
 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-xl mt-40 mb-20">
+    <div className="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-xl my-20">
       <h2 className="text-2xl font-bold text-[#3d2817] mb-6">Registrar Nuevo Ejemplar</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input 

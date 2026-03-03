@@ -66,36 +66,37 @@ const Hero = () => {
                     <h1 className="text-5xl md:text-7xl font-bold text-[#f5f5dc] mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         {heroImages[currentIndex].title}
                     </h1>
-                    <p className="text-xl md:text-2xl text-[#d4af37] mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+                    <p className="text-xl md:text-2xl text-secondary mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
                         {heroImages[currentIndex].subtitle}
                     </p>
-                    <button 
+                    {/**<button 
                         onClick={handleExplorarClick}
-                        className="px-8 py-4 bg-[#d4af37] text-[#3d2817] rounded-lg font-bold text-lg hover:bg-[#b8860b] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300"
+                        className="px-8 py-4 bg-secondary text-primary rounded-lg font-bold text-lg hover:bg-[#b8860b] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300"
                     >
                         Explorar Catálogo
-                    </button>
+                    </button> */}
+                    
 
                 </div>
 
                 {/* Caja de información adicional */}
-                <div className="absolute top-80 right-8 bg-[#3d2817]/90 backdrop-blur-sm p-6 rounded-xl shadow-2xl max-w-sm hidden lg:block border-2 border-[#d4af37]/30 z-40">
-                    <h3 className="text-xl font-bold text-[#d4af37] mb-3">Bienvenido a Equino Club</h3>
-                    <ul className="space-y-2 text-[#f5f5dc] text-sm">
+                <div className="absolute top-80 right-8 bg-primary/90 backdrop-blur-sm p-6 rounded-xl shadow-2xl max-w-sm hidden lg:block border-2 border-secondary/30 z-40">
+                    <h3 className="text-xl font-bold text-secondary mb-3">Bienvenido a Equino Club</h3>
+                    <ul className="space-y-2 text-cream text-sm">
                         <li className="flex items-start">
-                            <span className="text-[#d4af37] mr-2">✓</span>
+                            <span className="text-secondary mr-2">✓</span>
                             <span>Caballos con pedigree certificado</span>
                         </li>
                         <li className="flex items-start">
-                            <span className="text-[#d4af37] mr-2">✓</span>
+                            <span className="text-secondary mr-2">✓</span>
                             <span>Asesoramiento veterinario incluido</span>
                         </li>
                         <li className="flex items-start">
-                            <span className="text-[#d4af37] mr-2">✓</span>
+                            <span className="text-secondary mr-2">✓</span>
                             <span>Garantía de salud y bienestar</span>
                         </li>
                         <li className="flex items-start">
-                            <span className="text-[#d4af37] mr-2">✓</span>
+                            <span className="text-secondary mr-2">✓</span>
                             <span>Transporte seguro disponible</span>
                         </li>
                     </ul>

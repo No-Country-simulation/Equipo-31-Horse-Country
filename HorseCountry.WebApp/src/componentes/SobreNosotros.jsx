@@ -28,7 +28,7 @@ const SobreNosotros = () => {
           </p>
 
           <a
-            href="/catalogo"
+            href="/about"
             className="inline-block bg-[#3d2817] text-[#f5f5dc] px-6 py-3 rounded-lg font-semibold hover:bg-[#5a3a22] transition"
           >
             Conocer más

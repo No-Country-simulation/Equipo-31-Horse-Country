@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import pdfVeterinario from '../assets/pdf/veterinario.pdf';
 import img1 from '../assets/caballos/caballo1.jpg';
 import img2 from '../assets/caballos/caballo2.jpg';
 import img3 from '../assets/caballos/caballo3.jpg';
@@ -14,12 +15,24 @@ const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
 
 
-const DetalleCaballo = ({ agregarAlCarrito }) => {
+const DetalleCaballo = ({ agregarAlCarrito, userRole, cart }) => {
   const { id } = useParams();
   const [horse, setHorse] = useState(null);
   const navigate = useNavigate();
   const [gallery, setGallery] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  
+  const isInCart = horse && cart ? cart.some(item => String(item.id) === String(horse.id)) : false;
+  const handleAddToCart = () => {
+    console.log("ROL ACTUAL:", userRole); // para ver qué llega
+
+    if (userRole !== "Comprador") { // ajustá al string real que usen
+      alert("Debes iniciar sesión como comprador para usar el carrito.");
+      navigate("/login");
+      return;
+    }
+    agregarAlCarrito(horse);
+  };
 
 
   useEffect(() => {
@@ -45,7 +58,7 @@ const DetalleCaballo = ({ agregarAlCarrito }) => {
   if (!horse) return <div className="p-10 text-center">Cargando detalles...</div>;
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-[#f5f5dc] flex flex-col items-center px-4 pt-20">
+    <div className="min-h-[calc(100vh-80px)] bg-[#f5f5dc] flex flex-col items-center px-4 pt-10">
       <div className="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
 
         {/* Imagen principal */}
@@ -104,12 +117,17 @@ const DetalleCaballo = ({ agregarAlCarrito }) => {
             </div>
 
             <button
-              onClick={() => { agregarAlCarrito(horse); navigate("/carrito") }}
-              className="bg-[#3d2817] hover:bg-[#d4af37] text-white hover:text-[#3d2817] 
-               px-4 py-3 md:px-8 md:py-4 rounded-xl font-bold 
-               transition-all duration-300 transform hover:scale-105 shadow-lg w-full md:w-auto"
+              onClick={handleAddToCart}
+              disabled={isInCart || horse.statusId !== 1} // Deshabilitar si ya está en carrito o no está disponible
+              className={`bg-[#3d2817] hover:bg-[#d4af37] text-white hover:text-[#3d2817]
+             px-4 py-3 md:px-8 md:py-4 rounded-xl font-bold
+             transition-all duration-300 transform hover:scale-105 shadow-lg w-full md:w-auto ${
+                isInCart 
+                  ? "bg-gray-400 cursor-not-allowed" 
+                  : "bg-[#3d2817] text-[#f5f5dc] hover:bg-[#d4af37]"
+             }`}
             >
-              Añadir al Carrito
+              {isInCart ? "Ya en el carrito" : "Añadir al carrito"}
             </button>
 
           </div>
@@ -205,20 +223,23 @@ const DetalleCaballo = ({ agregarAlCarrito }) => {
 
           {/* Botón PDF */}
           <button
-            onClick={() => console.log("Descargar PDF veterinario")}
+            onClick={() => window.open(pdfVeterinario, "_blank")}
             className="w-full md:w-auto bg-[#3d2817] hover:bg-[#d4af37] text-white hover:text-[#3d2817]
-               px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg"
+             px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg"
           >
             Descargar PDF Veterinario
           </button>
 
+
           {/* Botón Comprar */}
           <button
-            onClick={() => { agregarAlCarrito(horse); navigate("/carrito") }}
-            className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white
-               px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg"
+            onClick={handleAddToCart}
+
+            className="bg-[#3d2817] hover:bg-[#d4af37] text-white hover:text-[#3d2817]
+             px-4 py-3 md:px-8 md:py-4 rounded-xl font-bold
+             transition-all duration-300 transform hover:scale-105 shadow-lg w-full md:w-auto"
           >
-            Comprar
+            Añadir al Carrito
           </button>
 
         </div>

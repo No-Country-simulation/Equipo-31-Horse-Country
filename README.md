@@ -123,7 +123,7 @@ dotnet run
 🤝 Equipo
 Proyecto desarrollado por Equipo 31 – No Country Simulation
 Trabajo colaborativo entre frontend, backend y QA.
-* QA Tester: Samanta Ramos Podadera
+- QA Tester: Samanta Ramos Podadera
 - Backend: Cristian Maida
 - Frontend: Martín Salvador
 

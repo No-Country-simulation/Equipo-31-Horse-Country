@@ -1,4 +1,15 @@
 @import "tailwindcss";
+@import "tailwindcss/theme" layer(theme);
+
+@theme {
+  --color-primary: #6e1a0a;     /* Rojo vino más vivo */
+  --color-secondary: #c9a227;   /* Dorado vibrante */
+  --color-cream: #f3e9c9;       /* Crema cálido */
+  --color-mostaza: #b5b82e;     /* Mostaza más brillante */
+  --color-oscuro: #1a1a1a;      /* Negro cálido, no verdoso */
+}
+
+
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -7,7 +18,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--color-cream);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

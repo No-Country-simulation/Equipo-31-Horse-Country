@@ -100,7 +100,7 @@ public class HorsesController : ControllerBase
             Price = (double)horseDto.Price,
             BreedId = horseDto.BreedId,
             ColorId = horseDto.ColorId,
-            StatusId = 1, // Por defecto 'Disponible'
+            StatusId = 4, // Por defecto 'Disponible'
             GenderId = horseDto.GenderId,
             UserId = 1, // Aquí deberías usar el ID del usuario autenticado
             CreatedAt = DateTime.UtcNow.TimeOfDay,
