@@ -90,8 +90,31 @@ public class HorsesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Horse>> CreateHorse([FromBody] HorseDto horseDto)
+    [Consumes("multipart/form-data")]
+    public async Task<ActionResult<Horse>> CreateHorse([FromForm] HorseDto horseDto)
     {
+        string? imageUrl = null;
+
+        // Lógica para guardar el archivo físico
+        if (horseDto.ImageFile != null && horseDto.ImageFile.Length > 0)
+        {
+            // 1. Definir la carpeta (wwwroot/images)
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+            if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+
+            // 2. Nombre único para evitar sobrescribir archivos
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(horseDto.ImageFile.FileName);
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            // 3. Guardar el archivo en el disco
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await horseDto.ImageFile.CopyToAsync(stream);
+            }
+
+            // 4. Esta es la URL que irá a la base de datos
+            imageUrl = $"/images/{fileName}";
+        }
         // 1. Crear la entidad a partir del DTO
         var newHorse = new Horse
         {
@@ -103,6 +126,7 @@ public class HorsesController : ControllerBase
             StatusId = 4, // Por defecto 'Disponible'
             GenderId = horseDto.GenderId,
             UserId = 1, // Aquí deberías usar el ID del usuario autenticado
+            ImageUrl = imageUrl,
             CreatedAt = DateTime.UtcNow.TimeOfDay,
             UpdatedAt = DateTime.UtcNow.TimeOfDay
         };

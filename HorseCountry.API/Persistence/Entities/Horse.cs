@@ -19,4 +19,5 @@ public class Horse
     public virtual Color? Color { get; set; }
     public virtual Gender? Gender { get; set; }
     public virtual Status? Status {get;set;}
+    public string? ImageUrl { get; set; }
 }

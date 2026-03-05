@@ -37,7 +37,7 @@ const DetalleCaballo = ({ agregarAlCarrito, userRole, cart }) => {
 
   useEffect(() => {
     // 1. Traer caballo por ID
-    fetch(`http://localhost:5233/api/horses/${id}`)
+    fetch(`https://horsecountry-master.onrender.com/api/horses/${id}`)
       .then(res => res.json())
       .then(data => {
         setHorse(data);

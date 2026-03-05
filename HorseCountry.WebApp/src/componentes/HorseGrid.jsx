@@ -23,15 +23,19 @@ const [searchQuery, setSearchQuery] = useState(initialSearch);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5233/api/horses?page=${currentPage}&pageSize=8`)
+    fetch(`https://horsecountry-master.onrender.com/api/horses?page=${currentPage}&pageSize=8`)
       .then((res) => res.json())
       .then((data) => {
+        const baseApiUrl = "https://horsecountry-master.onrender.com/";
+        const fallback = "/images/fallback.png";
         const listaOriginal = data.items || data; 
         const disponibles = listaOriginal.filter(h => (h.statusId || h.StatusId) === 1);
 
         const itemsWithImages = disponibles.map(horse => ({
           ...horse,
-          randomImage: images[Math.floor(Math.random() * images.length)]
+          displayImage: horse.imageUrl 
+            ? `${baseApiUrl}${horse.imageUrl}` 
+            : `${baseApiUrl}${fallback}`
         }));
 
         setPaginationData({
@@ -96,7 +100,7 @@ const [searchQuery, setSearchQuery] = useState(initialSearch);
           {/* Imagen */}
           <div className="h-52">
             <img
-              src={horse.randomImage}
+              src={horse.displayImage}
               alt={horse.name}
               className="h-full w-full object-cover"
             />

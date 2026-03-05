@@ -124,6 +124,9 @@ namespace HorseCountry.API.Migrations
                     b.Property<int>("GenderId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");

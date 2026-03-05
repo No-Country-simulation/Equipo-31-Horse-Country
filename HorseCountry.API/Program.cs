@@ -69,14 +69,19 @@ public partial class Program
             app.MapScalarApiReference();
         }
 
-        using (var scope = app.Services.CreateScope().ServiceProvider.GetRequiredService<HorseDbContext>())
+        /*using (var scope = app.Services.CreateScope().ServiceProvider.GetRequiredService<HorseDbContext>())
         {
             scope.Database.Migrate();
-        }
+        }*/
 
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
+        app.UseStaticFiles();
+
+        var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+        app.Urls.Add($"http://0.0.0.0:{port}");
+
         app.UseAuthorization();
 
         app.MapGroup("api/login").MapIdentityApi<User>();

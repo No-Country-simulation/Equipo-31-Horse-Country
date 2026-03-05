@@ -4,8 +4,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 7221
-EXPOSE 5233
+#EXPOSE 7221
+#EXPOSE 5233
 
 
 # Esta fase se usa para compilar el proyecto de servicio
@@ -27,4 +27,7 @@ RUN dotnet publish "./HorseCountry.API.csproj" -c $BUILD_CONFIGURATION -o /app/p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+ENV ASPNETCORE_URLS=http://+:10000
+
 ENTRYPOINT ["dotnet", "HorseCountry.API.dll"]
